@@ -1,0 +1,13 @@
+# HoloBot Configuration
+# Copy this file to .env and configure your settings
+
+# DeepSeek API Configuration
+DEEPSEEK_API_KEY=sk-1160f813950f4cee927f102ce16d145d
+DEEPSEEK_MODEL=deepseek-chat
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_MAX_RETRIES=3
+DEEPSEEK_TIMEOUT=120
+
+# Available DeepSeek models:
+# deepseek-chat (recommended for general conversation)
+# deepseek-coder (optimized for coding tasks)
