@@ -29,48 +29,13 @@ class HoloBot:
     def __init__(self):
         """Initialize the HoloBot with all required components"""
         # Load environment variables from multiple locations
-        # Get the directory where this script is located
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        
-        # Try script's directory first (most reliable)
-        script_env_path = os.path.join(script_dir, '.env')
-        if os.path.exists(script_env_path):
-            load_dotenv(script_env_path, override=True)
-        
-        # Try current working directory
-        cwd_env_path = os.path.join(os.getcwd(), '.env')
-        if os.path.exists(cwd_env_path):
-            load_dotenv(cwd_env_path, override=True)
-        
-        # Also try without path (default behavior)
-        load_dotenv(override=False)
-        
-        # Try virtual environment directory relative to script
-        venv_env_path = os.path.join(script_dir, '.venv', '.env')
-        if os.path.exists(venv_env_path):
-            load_dotenv(venv_env_path, override=True)
-        
-        # Also try virtual environment in current working directory
-        cwd_venv_env = os.path.join(os.getcwd(), '.venv', '.env')
-        if os.path.exists(cwd_venv_env):
-            load_dotenv(cwd_venv_env, override=True)
+        load_dotenv()  # Load from current directory
+        load_dotenv('.venv/.env')  # Load from virtual environment if it exists
         
         # AI Configuration - DeepSeek API
         self.deepseek_api_key = os.getenv('DEEPSEEK_API_KEY')
         if not self.deepseek_api_key:
-            # Provide helpful error message with paths checked
-            checked_paths = [
-                os.path.abspath('.env'),
-                script_env_path,
-                venv_env_path,
-                cwd_venv_env
-            ]
-            error_msg = (
-                "DEEPSEEK_API_KEY environment variable is required.\n"
-                "Please set it in your .env file or environment variables.\n"
-                f"Checked paths: {', '.join([p for p in checked_paths if p])}"
-            )
-            raise ValueError(error_msg)
+            raise ValueError("DEEPSEEK_API_KEY environment variable is required. Please set it in your .env file or environment variables.")
         
         self.model = os.getenv('DEEPSEEK_MODEL', 'deepseek-chat')
         self.base_url = os.getenv('DEEPSEEK_BASE_URL', 'https://api.deepseek.com')

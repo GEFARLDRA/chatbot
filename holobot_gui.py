@@ -365,7 +365,7 @@ class HoloBotGUI:
                 self._append_line("system", "⚠️ DeepSeek API key not found. Please check your .env file.")
                 return
             
-            # Test with a simple API call
+            
             try:
                 headers = {
                     "Authorization": f"Bearer {self.bot.api_key}",
