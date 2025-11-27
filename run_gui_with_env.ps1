@@ -2,7 +2,7 @@
 Write-Host "Setting up environment and starting HoloBot GUI..." -ForegroundColor Green
 
 # Set environment variables
-$env:DEEPSEEK_API_KEY = "sk-1160f813950f4cee927f102ce16d145d"
+$env:DEEPSEEK_API_KEY = "sk-46d540c34e57443bb668e2755d2a9dbf"
 $env:DEEPSEEK_MODEL = "deepseek-chat"
 $env:DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 
