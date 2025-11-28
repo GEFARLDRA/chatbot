@@ -246,11 +246,8 @@ class HoloBotGUI:
 
     def _capture_voice_once(self) -> None:
         try:
-            # Optionally honor wake word. If not heard, still allow manual capture.
-            heard = self.bot.listen_for_wake_word()
-            if not heard:
-                # If wake word not detected quickly, prompt user and capture directly
-                self._append_line("system", "(Wake word not detected. Listening now...)")
+            # Skip wake word detection for manual Speak button - just listen directly
+            self._append_line("system", "Listening... Please speak now.")
             text = self.bot.listen_for_input()
             text = (text or "").strip()
             if not text:

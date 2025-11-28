@@ -201,7 +201,9 @@ class HoloBot:
     def listen_for_wake_word(self) -> bool:
         """Listen for the wake word 'hey holo'"""
         try:
-            with self.microphone as source:
+            # Create a new microphone instance to avoid context manager conflicts
+            mic = sr.Microphone()
+            with mic as source:
                 # Adjust for ambient noise
                 self.recognizer.adjust_for_ambient_noise(source, duration=1)
                 logger.info("Listening for wake word...")
@@ -237,7 +239,9 @@ class HoloBot:
     def listen_for_input(self) -> str:
         """Listen for user input after wake word is detected"""
         try:
-            with self.microphone as source:
+            # Create a new microphone instance to avoid context manager conflicts
+            mic = sr.Microphone()
+            with mic as source:
                 logger.info("Listening for your input...")
                 # Listen for audio with longer timeout
                 audio = self.recognizer.listen(source, timeout=10, phrase_time_limit=5)
