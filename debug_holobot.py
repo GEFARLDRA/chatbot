@@ -3,6 +3,8 @@
 Debug script to test HoloBot connection
 """
 
+import utils.transport
+import utils.session
 import os
 from dotenv import load_dotenv
 from holobot import HoloBot
